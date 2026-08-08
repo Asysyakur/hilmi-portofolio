@@ -1,28 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
 export default function ContactSection() {
-  const [isVideoMode, setIsVideoMode] = useState(false);
-
-  useEffect(() => {
-    const handleModeChange = (event: Event) => {
-      const detail = (event as CustomEvent<{ isVideoMode?: boolean }>).detail;
-      setIsVideoMode(Boolean(detail?.isVideoMode));
-    };
-
-    window.addEventListener(
-      "persona-mode-toggle",
-      handleModeChange as EventListener,
-    );
-    return () => {
-      window.removeEventListener(
-        "persona-mode-toggle",
-        handleModeChange as EventListener,
-      );
-    };
-  }, []);
-
   return (
     <section
       id="contact"
@@ -41,13 +19,13 @@ export default function ContactSection() {
             08987829808 | hilmiasysyakur123@gmail.com
           </p>
           <p className="mt-1 text-xs text-[#f4f2ec]/60">
-           Sukajadi, Bandung, Indonesia
+            Sukajadi, Bandung, Indonesia
           </p>
         </div>
         <div className="flex flex-wrap gap-3">
           <a
             href="mailto:hilmiasysyakur123@gmail.com"
-            className={`persona-slant slash-card px-5 py-3 text-lg uppercase text-[#0b1220] transition ${isVideoMode ? "bg-[#d4722f] hover:bg-[#e8a66f]" : "bg-[#ffe600] hover:bg-[#fff067]"}`}
+            className="persona-slant slash-card bg-[#ffe600] px-5 py-3 text-lg uppercase text-[#0b1220] transition hover:bg-[#fff067]"
           >
             <span className="persona-slant-inner block">Email</span>
           </a>
@@ -55,15 +33,23 @@ export default function ContactSection() {
             href="https://www.linkedin.com/in/hilmi-asysyakur-islam-489384279/"
             target="_blank"
             rel="noreferrer"
-            className={`persona-slant slash-card border border-white/25 bg-black/70 px-5 py-3 text-lg uppercase text-white transition ${isVideoMode ? "hover:border-[#d4722f]" : "hover:border-[#ffe600]"}`}
+            className="persona-slant slash-card border border-white/25 bg-black/70 px-5 py-3 text-lg uppercase text-white transition hover:border-[#ffe600]"
           >
             <span className="persona-slant-inner block">LinkedIn</span>
           </a>
           <a
-            href="/HILMI_ASYSYAKUR_ISLAM-resume.pdf"
+            href="https://bit.ly/ProtofolioHilmi"
             target="_blank"
             rel="noreferrer"
-            className={`persona-slant slash-card border border-white/25 bg-black/70 px-5 py-3 text-lg uppercase text-white transition ${isVideoMode ? "hover:border-[#d4722f]" : "hover:border-[#ffe600]"}`}
+            className="persona-slant slash-card border border-white/25 bg-black/70 px-5 py-3 text-lg uppercase text-white transition hover:border-[#ffe600]"
+          >
+            <span className="persona-slant-inner block">Portofolio</span>
+          </a>
+          <a
+            href="https://github.com/Asysyakur"
+            target="_blank"
+            rel="noreferrer"
+            className="persona-slant slash-card border border-white/25 bg-black/70 px-5 py-3 text-lg uppercase text-white transition hover:border-[#ffe600]"
           >
             <span className="persona-slant-inner block">GitHub</span>
           </a>

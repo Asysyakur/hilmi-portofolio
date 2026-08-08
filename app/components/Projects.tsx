@@ -35,8 +35,28 @@ import pos73 from "../assets/POS Ayam Babak Belur/image 73.png";
 import pos74 from "../assets/POS Ayam Babak Belur/image 74.png";
 import pos75 from "../assets/POS Ayam Babak Belur/image 75.png";
 import scarlett63 from "../assets/Scarlett/image 63.png";
-import scarlett64 from "../assets/Scarlett/image 64.png";
-import scarlett65 from "../assets/Scarlett/image 65.png";
+
+import hiring1 from "../assets/Hiring/hiring1.png";
+import hiring2 from "../assets/Hiring/hiring2.png";
+import hiring3 from "../assets/Hiring/hiring3.png";
+import hiring4 from "../assets/Hiring/hiring4.png";
+import hiring5 from "../assets/Hiring/hiring5.png";
+import hiring6 from "../assets/Hiring/hiring6.png";
+import hiring7 from "../assets/Hiring/hiring7.png";
+import hiring8 from "../assets/Hiring/hiring8.png";
+import hiring9 from "../assets/Hiring/hiring9.png";
+
+import landing1 from "../assets/LandingPage/landing1.png";
+import landing2 from "../assets/LandingPage/landing2.png";
+import landing3 from "../assets/LandingPage/landing3.png";
+import landing4 from "../assets/LandingPage/landing4.png";
+import landing5 from "../assets/LandingPage/landing5.png";
+import landing6 from "../assets/LandingPage/landing6.png";
+
+import favorit from "../assets/Achievements/favorit.png";
+import harapan1 from "../assets/Achievements/harapan1.png";
+import harapan3 from "../assets/Achievements/harapan3.png";
+import juara1 from "../assets/Achievements/juara1.png";
 
 type PortfolioProject = {
   title: string;
@@ -122,21 +142,21 @@ const projects: PortfolioProject[] = [
     ],
   },
   {
-    title: "DRAG-AND-DROP LMS PLATFORM",
-    desc: "Developing an LMS platform featuring drag-and-drop interaction for a more intuitive learning experience using React.js, Laravel, MySQL, and Tailwind CSS.",
+    title: "GAMIFIED LEARNING MANAGEMENT SYSTEM",
+    desc: "Developing a gamified Learning Management System (LMS) platform to improve student engagement and motivation using React.js, Laravel, MySQL, and Tailwind CSS.",
     tag: "Fullstack",
     period: "Nov 2024 - Aug 2025 | Freelance",
     image: "/next.svg",
     details: [
-      "Implemented drag-and-drop learning interactions.",
-      "Added gamified mechanics to improve engagement.",
+      "RPG element for course completion reward system.",
+      "Gamified mechanics to improve engagement.",
       "Focused on intuitive learning flow and student motivation.",
     ],
   },
   {
     title: "INTERACTIVE VILLAGE PROFILE + GEMINI AI",
     desc: "Developing an interactive village profile platform integrated with Gemini AI to provide intelligent insights and answers about local culture and heritage using React.js, Laravel, MySQL, and Tailwind CSS.",
-    tag: "AI Integration",
+    tag: "Full Stack + AI Integration",
     period: "Nov 2024 - Aug 2025 | Freelance",
     image: "/globe.svg",
     details: [
@@ -207,69 +227,6 @@ const projects: PortfolioProject[] = [
   },
 ];
 
-const videoProjects: PortfolioProject[] = [
-  {
-    title: "CAMPUS EVENT AFTERMOVIE",
-    desc: "Edited a cinematic aftermovie to capture atmosphere, crowd emotion, and event highlights.",
-    tag: "Event Edit",
-    period: "2023",
-    image: "/window.svg",
-    details: [
-      "Built narrative pacing from opening to final crescendo.",
-      "Balanced crowd ambience with licensed music track.",
-      "Delivered social-ready formats for multiple platforms.",
-    ],
-  },
-  {
-    title: "PROMOTIONAL REELS PACK",
-    desc: "Produced short-form promotional reels for digital campaigns with strong visual hooks.",
-    tag: "Commercial",
-    period: "2024",
-    image: "/globe.svg",
-    details: [
-      "Designed first-3-second hooks to increase retention.",
-      "Applied dynamic text animation and speed ramp transitions.",
-      "Exported optimized variants for Reels, Shorts, and TikTok.",
-    ],
-  },
-  {
-    title: "EDUCATIONAL MOTION EXPLAINER",
-    desc: "Edited educational explainer videos with clean narration sync and visual clarity.",
-    tag: "Education",
-    period: "2024",
-    image: "/file.svg",
-    details: [
-      "Created modular edit template for recurring episodes.",
-      "Combined screen captures, callouts, and motion overlays.",
-      "Improved watchability through rhythm and visual hierarchy.",
-    ],
-  },
-  {
-    title: "BRAND STORY VIDEO",
-    desc: "Assembled interview, b-roll, and typography to shape a compelling brand narrative.",
-    tag: "Branding",
-    period: "2025",
-    image: "/next.svg",
-    details: [
-      "Structured emotional arc with strategic story beats.",
-      "Performed color balancing for visual consistency.",
-      "Integrated subtle sound design to elevate immersion.",
-    ],
-  },
-  {
-    title: "SHORT-FORM CONTENT SERIES",
-    desc: "Developed an efficient editing pipeline for weekly short-form content delivery.",
-    tag: "Social Content",
-    period: "2025 - Present",
-    image: "/vercel.svg",
-    details: [
-      "Built reusable presets for transitions and captions.",
-      "Maintained consistent brand look across episodes.",
-      "Reduced turnaround time while preserving quality.",
-    ],
-  },
-];
-
 const devGalleryFallback: StaticImageData[] = [
   absensi84,
   edugame55,
@@ -279,50 +236,52 @@ const devGalleryFallback: StaticImageData[] = [
   pos72,
 ];
 
-const videoGalleryFallback: StaticImageData[] = [
-  absensi85,
-  edugame56,
-  jelajahiku67,
-  scarlett64,
-  lupic79,
-  pos73,
-];
-
 const CONFIDENTIAL_PLACEHOLDER = "/confidential-preview.png";
 
 const projectGalleryMapping: Record<
   string,
-  { dev: StaticImageData[]; video: StaticImageData[] }
+  { dev: StaticImageData[] }
 > = {
-  "CBT WEB APPLICATION": {
-    dev: [pos72, pos73, pos74, pos75],
-    video: [pos73, pos73, pos74, pos75],
-  },
   "COMPANY PROFILE + E-COMMERCE": {
     dev: [lupic77, lupic79, lupic80, lupic81, lupic82, lupic83],
-    video: [lupic79, lupic79, lupic80, lupic81, lupic82, lupic83],
   },
   "POS CASHIER WEB APP": {
     dev: [pos72, pos73, pos74, pos75],
-    video: [pos73, pos73, pos74, pos75],
   },
   "EMPLOYEE EVALUATION PLATFORM": {
     dev: [absensi84, absensi85, absensi86, absensi89],
-    video: [absensi84, absensi85, absensi84, absensi89],
   },
-  "DRAG-AND-DROP LMS PLATFORM": {
+  "GAMIFIED LEARNING MANAGEMENT SYSTEM": {
     dev: [edugame55, edugame56, edugame58, edugame59, edugame62],
-    video: [edugame56, edugame56, edugame58, edugame59, edugame62],
   },
   "INTERACTIVE VILLAGE PROFILE + GEMINI AI": {
     dev: [jelajahiku66, jelajahiku67, jelajahiku68, jelajahiku69, jelajahiku71],
-    video: [
-      jelajahiku67,
-      jelajahiku67,
-      jelajahiku68,
-      jelajahiku69,
-      jelajahiku71,
+  },
+  "HAND GESTURE HIRING PLATFORM": {
+    dev: [
+      hiring1,
+      hiring2,
+      hiring3,
+      hiring4,
+      hiring5,
+      hiring6,
+      hiring7,
+      hiring8,
+      hiring9,
     ],
+  },
+  "RESPONSIVE PROMOTIONAL LANDING PAGE": {
+    dev: [
+      landing1,
+      landing2,
+      landing3,
+      landing4,
+      landing5,
+      landing6,
+    ],
+  },
+  "COMPETITION ACHIEVEMENTS": {
+    dev: [juara1, favorit, harapan1, harapan3],
   },
 };
 
@@ -354,7 +313,6 @@ export default function Projects() {
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(true);
   const [showSurpriseBurst, setShowSurpriseBurst] = useState(false);
-  const [isVideoMode, setIsVideoMode] = useState(false);
   const [isImageFullscreen, setIsImageFullscreen] = useState(false);
   const [scrollbar, setScrollbar] = useState({ left: 0, width: 1 });
   const projectLaneRef = useRef<HTMLDivElement | null>(null);
@@ -396,30 +354,7 @@ export default function Projects() {
     return Math.min(card.offsetLeft, maxScroll);
   };
 
-  const displayedProjects = isVideoMode ? videoProjects : projects;
-
-  useEffect(() => {
-    const handleModeChange = (event: Event) => {
-      const detail = (event as CustomEvent<{ isVideoMode?: boolean }>).detail;
-      setIsVideoMode(Boolean(detail?.isVideoMode));
-      setActiveProject(null);
-      setActiveImageIndex(0);
-      setActiveProjectIndex(0);
-      setIsImageFullscreen(false);
-      projectLaneRef.current?.scrollTo({ left: 0, behavior: "smooth" });
-    };
-
-    window.addEventListener(
-      "persona-mode-toggle",
-      handleModeChange as EventListener,
-    );
-    return () => {
-      window.removeEventListener(
-        "persona-mode-toggle",
-        handleModeChange as EventListener,
-      );
-    };
-  }, []);
+  const displayedProjects = projects;
 
   useEffect(() => {
     const lane = projectLaneRef.current;
@@ -544,7 +479,7 @@ export default function Projects() {
         img.src = src;
       }
     });
-  }, [activeProject, isVideoMode]);
+  }, [activeProject]);
 
   const scrollProjects = (direction: "prev" | "next") => {
     const lane = projectLaneRef.current;
@@ -751,12 +686,8 @@ export default function Projects() {
           containIntrinsicSize: "1px 1200px",
         }}
       >
-        <div
-          className={`absolute left-[-12%] top-20 h-56 w-[120%] rotate-6 opacity-40 ${isVideoMode ? "bg-[#4a7c9e]" : "bg-[#56b9ea]"}`}
-        />
-        <div
-          className={`absolute left-[-10%] top-16 h-6 w-[112%] -rotate-5 opacity-50 ${isVideoMode ? "bg-[#d4722f]/70" : "bg-[#ffe600]/70"}`}
-        />
+        <div className="absolute left-[-12%] top-20 h-56 w-[120%] rotate-6 bg-[#56b9ea] opacity-40" />
+        <div className="absolute left-[-10%] top-16 h-6 w-[112%] -rotate-5 bg-[#ffe600]/70 opacity-50" />
         <div className="absolute inset-0 bg-linear-to-b from-transparent to-[#10233a]/72" />
         {showSurpriseBurst ? (
           <div className="persona-surprise-burst" aria-hidden="true" />
@@ -764,18 +695,12 @@ export default function Projects() {
 
         <div className="relative mx-auto max-w-6xl">
           <div className="mb-4 flex items-center justify-between gap-4">
-            <h3 className={sectionTitleClass}>
-              {isVideoMode ? "Video Reel Archive" : "Project Archive"}
-            </h3>
+            <h3 className={sectionTitleClass}>Project Archive</h3>
             <div className="flex items-center gap-3">
               <button
                 type="button"
                 onClick={triggerSurpriseMission}
-                className={`persona-slant slash-card px-3 py-2 text-[10px] uppercase tracking-[0.12em] text-[#0b1220] transition sm:text-xs ${
-                  isVideoMode
-                    ? "bg-[#d4722f] hover:bg-[#e8a66f]"
-                    : "bg-[#ffe600] hover:bg-[#fff067]"
-                }`}
+                className="persona-slant slash-card bg-[#ffe600] px-3 py-2 text-[10px] uppercase tracking-[0.12em] text-[#0b1220] transition hover:bg-[#fff067] sm:text-xs"
                 aria-label="Surprise me with a random project"
               >
                 <span className="persona-slant-inner block">
@@ -788,9 +713,7 @@ export default function Projects() {
                   onClick={() => scrollProjects("prev")}
                   disabled={!canScrollPrev}
                   className="slash-card battle-command px-2.5 py-2 text-[10px] sm:px-3 sm:text-xs"
-                  aria-label={
-                    isVideoMode ? "Previous video reels" : "Previous projects"
-                  }
+                  aria-label="Previous projects"
                 >
                   Prev
                 </button>
@@ -799,9 +722,7 @@ export default function Projects() {
                   onClick={() => scrollProjects("next")}
                   disabled={!canScrollNext}
                   className="slash-card battle-command px-2.5 py-2 text-[10px] sm:px-3 sm:text-xs"
-                  aria-label={
-                    isVideoMode ? "Next video reels" : "Next projects"
-                  }
+                  aria-label="Next projects"
                 >
                   Next
                 </button>
@@ -811,9 +732,7 @@ export default function Projects() {
 
           <div className="relative">
             <p className="mb-2 text-[10px] uppercase tracking-[0.18em] text-[#f4f2ec]/58 sm:hidden">
-              {isVideoMode
-                ? "Swipe cards to explore reels"
-                : "Swipe cards to explore projects"}
+              Swipe cards to explore projects
             </p>
             <div className="pointer-events-none absolute inset-y-0 -left-2 z-10 w-6 bg-linear-to-r from-[#10233a] to-transparent sm:w-10" />
             <div className="pointer-events-none absolute inset-y-0 -right-2 z-10 w-6 bg-linear-to-l from-[#10233a] to-transparent sm:w-10" />
@@ -823,32 +742,18 @@ export default function Projects() {
               onKeyDown={onProjectLaneKeyDown}
               tabIndex={0}
               role="region"
-              aria-label={
-                isVideoMode
-                  ? "Video reel horizontal slider"
-                  : "Project archive horizontal slider"
-              }
-              className={`persona-x-scroll flex snap-x snap-mandatory gap-4 overflow-x-auto px-2 py-3 outline-none focus-visible:ring-2 sm:gap-5 ${
-                isVideoMode
-                  ? "focus-visible:ring-[#d4722f]/70"
-                  : "focus-visible:ring-[#ffe600]/70"
-              }`}
+              aria-label="Project archive horizontal slider"
+              className="persona-x-scroll flex snap-x snap-mandatory gap-4 overflow-x-auto px-2 py-3 outline-none focus-visible:ring-2 focus-visible:ring-[#ffe600]/70 sm:gap-5"
             >
               {displayedProjects.map((project, index) => (
                 <article
                   key={project.title}
-                  className={`slash-card persona-panel archive-card-shadow group w-[88vw] max-w-84 shrink-0 snap-start p-5 transition duration-300 odd:-rotate-[0.8deg] even:rotate-[0.8deg] hover:rotate-0 sm:w-96 sm:max-w-none sm:p-6 ${
-                    isVideoMode
-                      ? "hover:border-[#d4722f]/46"
-                      : "hover:border-[#ffe600]/46"
-                  }`}
+                  className="slash-card persona-panel archive-card-shadow group w-[88vw] max-w-84 shrink-0 snap-start p-5 transition duration-300 odd:-rotate-[0.8deg] even:rotate-[0.8deg] hover:rotate-0 hover:border-[#ffe600]/46 sm:w-96 sm:max-w-none sm:p-6"
                 >
                   <p className="persona-title mb-3 text-2xl text-white/30 sm:text-3xl">
                     0{index + 1}
                   </p>
-                  <p
-                    className={`persona-slant mb-4 inline-block px-3 py-1 text-xs uppercase tracking-[0.12em] text-[#0b1220] ${isVideoMode ? "bg-[#d4722f]" : "bg-[#ffe600]"}`}
-                  >
+                  <p className="persona-slant mb-4 inline-block bg-[#ffe600] px-3 py-1 text-xs uppercase tracking-[0.12em] text-[#0b1220]">
                     <span className="persona-slant-inner block">
                       {project.tag}
                     </span>
@@ -863,7 +768,7 @@ export default function Projects() {
                       setActiveProject(project);
                       setActiveImageIndex(0);
                     }}
-                    className={`persona-slant battle-command slash-card mt-5 px-4 py-2 text-sm text-[#f4f2ec]/90 ${isVideoMode ? "group-hover:text-[#d4722f]" : "group-hover:text-[#ffe600]"}`}
+                    className="persona-slant battle-command slash-card mt-5 px-4 py-2 text-sm text-[#f4f2ec]/90 group-hover:text-[#ffe600]"
                   >
                     <span className="persona-slant-inner block">
                       View Detail
@@ -904,18 +809,12 @@ export default function Projects() {
                   onClick={() => jumpToProject(index)}
                   className={`rounded-full transition ${
                     Math.abs(index - activeProjectIndex) === 0
-                      ? isVideoMode
-                        ? "h-2.5 w-8 bg-[#d4722f]"
-                        : "h-2.5 w-8 bg-[#ffe600]"
+                      ? "h-2.5 w-8 bg-[#ffe600]"
                       : Math.abs(index - activeProjectIndex) === 1
-                        ? isVideoMode
-                          ? "h-2.5 w-4 bg-[#4a7c9e]/85"
-                          : "h-2.5 w-4 bg-[#56b9ea]/85"
+                        ? "h-2.5 w-4 bg-[#56b9ea]/85"
                         : Math.abs(index - activeProjectIndex) === 2
                           ? "h-2.5 w-3 bg-white/55"
-                          : isVideoMode
-                            ? "h-2.5 w-2.5 bg-white/25 hover:bg-[#4a7c9e]/70"
-                            : "h-2.5 w-2.5 bg-white/25 hover:bg-[#56b9ea]/70"
+                          : "h-2.5 w-2.5 bg-white/25 hover:bg-[#56b9ea]/70"
                   }`}
                   aria-label={`Go to project ${index + 1}`}
                 />
@@ -936,11 +835,7 @@ export default function Projects() {
           >
             <div className="flex items-start justify-between gap-4">
               <div>
-                <p
-                  className={`persona-slant mb-2 inline-block px-3 py-1 text-xs uppercase tracking-[0.12em] text-[#f4f2ec] ${
-                    isVideoMode ? "bg-[#d4722f]" : "bg-[#56b9ea]"
-                  }`}
-                >
+                <p className="persona-slant mb-2 inline-block bg-[#56b9ea] px-3 py-1 text-xs uppercase tracking-[0.12em] text-[#f4f2ec]">
                   <span className="persona-slant-inner block">
                     {activeProject.tag}
                   </span>
@@ -954,9 +849,7 @@ export default function Projects() {
               <button
                 type="button"
                 onClick={() => setActiveProject(null)}
-                className={`battle-command slash-card px-3 py-2 text-sm text-[#f4f2ec] ${
-                  isVideoMode ? "hover:text-[#e8a66f]" : "hover:text-[#ffe600]"
-                }`}
+                className="battle-command slash-card px-3 py-2 text-sm text-[#f4f2ec] hover:text-[#ffe600]"
               >
                 Close
               </button>
@@ -968,9 +861,7 @@ export default function Projects() {
 
             <div className="mt-5 rounded-xl border border-white/15 bg-black/35 p-4">
               <div className="relative h-48 overflow-hidden rounded-lg sm:h-72 lg:h-96">
-                <div
-                  className={`absolute inset-0 bg-linear-to-br ${isVideoMode ? "from-[#4a7c9e]/18 to-[#d4722f]/12" : "from-[#56b9ea]/18 to-[#ffe600]/12"}`}
-                />
+                <div className="absolute inset-0 bg-linear-to-br from-[#56b9ea]/18 to-[#ffe600]/12" />
                 {activeProjectGallery.length > 1 ? (
                   <>
                     <button
@@ -1013,8 +904,8 @@ export default function Projects() {
                       onClick={() => setActiveImageIndex(index)}
                       className={`h-2.5 rounded-full transition cursor-pointer ${
                         index === activeImageIndex
-                          ? `w-7 ${isVideoMode ? "bg-[#d4722f]" : "bg-[#ffe600]"}`
-                          : `w-2 bg-white/35 ${isVideoMode ? "hover:bg-[#4a7c9e]" : "hover:bg-[#56b9ea]"}`
+                          ? "w-7 bg-[#ffe600]"
+                          : "w-2 bg-white/35 hover:bg-[#56b9ea]"
                       }`}
                       aria-label={`Show image ${index + 1}`}
                     />

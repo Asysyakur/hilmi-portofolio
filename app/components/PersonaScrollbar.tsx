@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 
 export default function PersonaScrollbar() {
   const [scrollPercent, setScrollPercent] = useState(2);
-  const [isVideoMode, setIsVideoMode] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,28 +15,15 @@ export default function PersonaScrollbar() {
       setScrollPercent(percent);
     };
 
-    const handleModeChange = (event: Event) => {
-      const detail = (event as CustomEvent<{ isVideoMode?: boolean }>).detail;
-      setIsVideoMode(Boolean(detail?.isVideoMode));
-    };
-
     window.addEventListener("scroll", handleScroll);
-    window.addEventListener(
-      "persona-mode-toggle",
-      handleModeChange as EventListener,
-    );
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener(
-        "persona-mode-toggle",
-        handleModeChange as EventListener,
-      );
     };
   }, []);
 
   return (
     <div
-      className={`persona-scrollbar ${isVideoMode ? "video-mode" : ""}`}
+      className="persona-scrollbar"
       style={{ width: `${scrollPercent}%` }}
     />
   );
