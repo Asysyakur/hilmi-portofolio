@@ -3,7 +3,7 @@ import { Bebas_Neue, Barlow_Condensed } from "next/font/google";
 import type { Metadata } from "next";
 
 import Cursor from "./components/Cursor";
-import { Analytics } from "@vercel/analytics/react";
+import { Analytics } from "@vercel/analytics/next";
 
 const bebas = Bebas_Neue({
   variable: "--font-display",
