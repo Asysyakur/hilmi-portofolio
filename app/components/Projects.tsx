@@ -454,6 +454,22 @@ export default function Projects() {
   const [showSurpriseBurst, setShowSurpriseBurst] = useState(false);
   const [isImageFullscreen, setIsImageFullscreen] = useState(false);
   const [isModalImageLoading, setIsModalImageLoading] = useState(false);
+  const [zoomScale, setZoomScale] = useState(1);
+  const [zoomPosition, setZoomPosition] = useState({ x: 0, y: 0 });
+  const [isDraggingZoom, setIsDraggingZoom] = useState(false);
+  const dragStartRef = useRef<{
+    x: number;
+    y: number;
+    posX: number;
+    posY: number;
+  } | null>(null);
+  const pinchStartRef = useRef<{ dist: number; scale: number } | null>(null);
+  const touchStartPosRef = useRef<{
+    x: number;
+    y: number;
+    time: number;
+  } | null>(null);
+  const lastTapTimeRef = useRef<number>(0);
   const [scrollbar, setScrollbar] = useState({ left: 0, width: 1 });
   const projectLaneRef = useRef<HTMLDivElement | null>(null);
   const scrollbarTrackRef = useRef<HTMLDivElement | null>(null);
@@ -584,6 +600,160 @@ export default function Projects() {
   }, []);
 
   useEffect(() => {
+    if (isImageFullscreen || activeProject) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isImageFullscreen, activeProject]);
+
+  const resetZoom = () => {
+    setZoomScale(1);
+    setZoomPosition({ x: 0, y: 0 });
+  };
+
+  useEffect(() => {
+    resetZoom();
+  }, [activeImageIndex, isImageFullscreen]);
+
+  const handleZoomIn = () => {
+    setZoomScale((prev) => {
+      const next = Math.min(prev + 0.5, 3.5);
+      if (next === 1) setZoomPosition({ x: 0, y: 0 });
+      return next;
+    });
+  };
+
+  const handleZoomOut = () => {
+    setZoomScale((prev) => {
+      const next = Math.max(prev - 0.5, 1);
+      if (next === 1) setZoomPosition({ x: 0, y: 0 });
+      return next;
+    });
+  };
+
+  const handleDoubleTapOrClick = (clientX?: number, clientY?: number) => {
+    if (zoomScale > 1.05) {
+      resetZoom();
+    } else {
+      setZoomScale(2.5);
+      if (
+        typeof clientX === "number" &&
+        typeof clientY === "number" &&
+        typeof window !== "undefined"
+      ) {
+        const centerX = window.innerWidth / 2;
+        const centerY = window.innerHeight / 2;
+        const offsetX = (centerX - clientX) * 1.2;
+        const offsetY = (centerY - clientY) * 1.2;
+        setZoomPosition({ x: offsetX, y: offsetY });
+      }
+    }
+  };
+
+  const handlePointerDown = (e: PointerEvent<HTMLDivElement>) => {
+    if (zoomScale > 1) {
+      setIsDraggingZoom(true);
+      dragStartRef.current = {
+        x: e.clientX,
+        y: e.clientY,
+        posX: zoomPosition.x,
+        posY: zoomPosition.y,
+      };
+    }
+  };
+
+  const handlePointerMove = (e: PointerEvent<HTMLDivElement>) => {
+    if (isDraggingZoom && dragStartRef.current && zoomScale > 1) {
+      const dx = e.clientX - dragStartRef.current.x;
+      const dy = e.clientY - dragStartRef.current.y;
+      setZoomPosition({
+        x: dragStartRef.current.posX + dx,
+        y: dragStartRef.current.posY + dy,
+      });
+    }
+  };
+
+  const handlePointerUp = () => {
+    setIsDraggingZoom(false);
+    dragStartRef.current = null;
+  };
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (e.touches.length === 2) {
+      const t1 = e.touches[0];
+      const t2 = e.touches[1];
+      const dist = Math.hypot(
+        t2.clientX - t1.clientX,
+        t2.clientY - t1.clientY,
+      );
+      pinchStartRef.current = { dist, scale: zoomScale };
+    } else if (e.touches.length === 1) {
+      const touch = e.touches[0];
+      const now = Date.now();
+      if (now - lastTapTimeRef.current < 300) {
+        handleDoubleTapOrClick(touch.clientX, touch.clientY);
+        lastTapTimeRef.current = 0;
+      } else {
+        lastTapTimeRef.current = now;
+        touchStartPosRef.current = {
+          x: touch.clientX,
+          y: touch.clientY,
+          time: now,
+        };
+      }
+    }
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (e.touches.length === 2 && pinchStartRef.current) {
+      const t1 = e.touches[0];
+      const t2 = e.touches[1];
+      const currentDist = Math.hypot(
+        t2.clientX - t1.clientX,
+        t2.clientY - t1.clientY,
+      );
+      if (pinchStartRef.current.dist > 0) {
+        const ratio = currentDist / pinchStartRef.current.dist;
+        const newScale = Math.min(
+          Math.max(pinchStartRef.current.scale * ratio, 1),
+          3.5,
+        );
+        setZoomScale(newScale);
+        if (newScale === 1) {
+          setZoomPosition({ x: 0, y: 0 });
+        }
+      }
+    }
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
+    pinchStartRef.current = null;
+    if (
+      zoomScale === 1 &&
+      touchStartPosRef.current &&
+      e.changedTouches.length > 0
+    ) {
+      const touch = e.changedTouches[0];
+      const dx = touch.clientX - touchStartPosRef.current.x;
+      const dy = touch.clientY - touchStartPosRef.current.y;
+      const dt = Date.now() - touchStartPosRef.current.time;
+
+      if (dt < 400 && Math.abs(dx) > 40 && Math.abs(dy) < 60) {
+        if (dx < 0) {
+          slideActiveProjectImage("next");
+        } else {
+          slideActiveProjectImage("prev");
+        }
+      }
+    }
+    touchStartPosRef.current = null;
+  };
+
+  useEffect(() => {
     if (!isImageFullscreen) {
       return;
     }
@@ -591,6 +761,28 @@ export default function Projects() {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setIsImageFullscreen(false);
+      } else if (event.key === "ArrowLeft") {
+        if (zoomScale > 1) {
+          setZoomPosition((pos) => ({ ...pos, x: pos.x + 80 }));
+        } else {
+          slideActiveProjectImage("prev");
+        }
+      } else if (event.key === "ArrowRight") {
+        if (zoomScale > 1) {
+          setZoomPosition((pos) => ({ ...pos, x: pos.x - 80 }));
+        } else {
+          slideActiveProjectImage("next");
+        }
+      } else if (event.key === "ArrowUp" && zoomScale > 1) {
+        setZoomPosition((pos) => ({ ...pos, y: pos.y + 80 }));
+      } else if (event.key === "ArrowDown" && zoomScale > 1) {
+        setZoomPosition((pos) => ({ ...pos, y: pos.y - 80 }));
+      } else if (event.key === "+" || event.key === "=") {
+        handleZoomIn();
+      } else if (event.key === "-" || event.key === "_") {
+        handleZoomOut();
+      } else if (event.key === "r" || event.key === "R" || event.key === "0") {
+        resetZoom();
       }
     };
 
@@ -604,7 +796,7 @@ export default function Projects() {
         handleKeyDown as unknown as EventListener,
       );
     };
-  }, [isImageFullscreen]);
+  }, [isImageFullscreen, zoomScale, activeProject]);
 
   useEffect(() => {
     // Preload ALL project images in background as soon as page mounts
@@ -843,6 +1035,7 @@ export default function Projects() {
   };
 
   const openFullscreenImage = () => {
+    resetZoom();
     setIsImageFullscreen(true);
   };
 
@@ -1198,54 +1391,190 @@ export default function Projects() {
 
       {activeProject && isImageFullscreen ? (
         <div
-          className="fixed inset-0 z-1300 flex items-center justify-center bg-black/95 p-1 sm:p-2"
+          className="fixed inset-0 z-1300 flex flex-col justify-between bg-[#070c14]/95 backdrop-blur-md select-none touch-none overflow-hidden"
           onClick={() => setIsImageFullscreen(false)}
         >
+          {/* Top Bar / Header Controls */}
           <div
-            className="relative h-full w-full max-w-[99vw] max-h-[99vh] sm:max-w-[98vw] sm:max-h-[98vh]"
-            onClick={(event) => event.stopPropagation()}
+            className="relative z-30 flex items-center justify-between gap-2 border-b border-white/15 bg-[#0b1220]/90 px-3 py-2.5 sm:px-6 backdrop-blur-md"
+            onClick={(e) => e.stopPropagation()}
           >
-            <Image
-              src={
-                activeProjectGallery[activeImageIndex] ?? activeProject.image
-              }
-              alt={`${activeProject.title} fullscreen visual`}
-              width={1920}
-              height={1080}
-              unoptimized
-              priority
-              className="max-w-full max-h-full object-contain opacity-100"
-            />
+            <div className="flex items-center gap-2 sm:gap-3 overflow-hidden min-w-0">
+              <span className="persona-slant shrink-0 bg-[#56b9ea] px-2 py-0.5 text-[10px] sm:text-xs uppercase tracking-wider text-[#0b1220] font-bold">
+                <span className="persona-slant-inner block">
+                  {activeProjectGallery.length > 1
+                    ? `${activeImageIndex + 1} / ${activeProjectGallery.length}`
+                    : "PREVIEW"}
+                </span>
+              </span>
+              <h4 className="truncate text-xs font-bold uppercase tracking-wider text-[#f4f2ec] sm:text-sm">
+                {activeProject.title}
+              </h4>
+            </div>
 
-            <button
-              type="button"
-              onClick={() => setIsImageFullscreen(false)}
-              className="battle-command absolute right-3 top-3 z-20 px-3 py-2 text-xs"
-              aria-label="Close fullscreen image"
+            {/* Controls: Zoom out, scale indicator, zoom in, close */}
+            <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
+              <div className="flex items-center gap-1 rounded-lg border border-white/20 bg-black/60 p-0.5 sm:p-1">
+                <button
+                  type="button"
+                  onClick={handleZoomOut}
+                  disabled={zoomScale <= 1}
+                  className="px-2 py-0.5 text-xs font-bold text-[#f4f2ec] transition hover:text-[#ffe600] disabled:opacity-30 cursor-pointer"
+                  aria-label="Zoom out"
+                >
+                  −
+                </button>
+                <button
+                  type="button"
+                  onClick={resetZoom}
+                  className="px-1.5 py-0.5 text-[10px] sm:text-xs uppercase font-mono tracking-wider text-[#ffe600] transition hover:text-white cursor-pointer"
+                  title="Reset Zoom"
+                >
+                  {Math.round(zoomScale * 100)}%
+                </button>
+                <button
+                  type="button"
+                  onClick={handleZoomIn}
+                  disabled={zoomScale >= 3.5}
+                  className="px-2 py-0.5 text-xs font-bold text-[#f4f2ec] transition hover:text-[#ffe600] disabled:opacity-30 cursor-pointer"
+                  aria-label="Zoom in"
+                >
+                  +
+                </button>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setIsImageFullscreen(false)}
+                className="battle-command persona-slant bg-[#ffe600] px-3 py-1.5 text-xs uppercase tracking-wider font-bold text-[#0b1220] transition hover:bg-[#fff067] cursor-pointer"
+                aria-label="Close modal"
+              >
+                <span className="persona-slant-inner block">CLOSE ✕</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Main Viewing Area */}
+          <div
+            className="relative flex-1 w-full h-full flex items-center justify-center overflow-hidden cursor-grab active:cursor-grabbing"
+            onClick={(e) => e.stopPropagation()}
+            onPointerDown={handlePointerDown}
+            onPointerMove={handlePointerMove}
+            onPointerUp={handlePointerUp}
+            onPointerCancel={handlePointerUp}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+            onDoubleClick={(e) => handleDoubleTapOrClick(e.clientX, e.clientY)}
+          >
+            <div
+              className="relative max-w-full max-h-full flex items-center justify-center transition-transform duration-150 ease-out"
+              style={{
+                transform: `translate3d(${zoomPosition.x}px, ${zoomPosition.y}px, 0px) scale(${zoomScale})`,
+                transition: isDraggingZoom
+                  ? "none"
+                  : "transform 0.15s ease-out",
+                transformOrigin: "center center",
+              }}
             >
-              Close
-            </button>
+              <Image
+                src={
+                  activeProjectGallery[activeImageIndex] ?? activeProject.image
+                }
+                alt={`${activeProject.title} visual fullscreen`}
+                width={1920}
+                height={1080}
+                unoptimized
+                priority
+                draggable={false}
+                className="max-w-[95vw] max-h-[78vh] sm:max-w-[90vw] sm:max-h-[82vh] object-contain select-none pointer-events-none drop-shadow-2xl"
+              />
+            </div>
 
+            {/* Side Prev/Next navigation for Desktop/Large screens */}
             {activeProjectGallery.length > 1 ? (
               <>
                 <button
                   type="button"
-                  onClick={() => slideActiveProjectImage("prev")}
-                  className="battle-command absolute left-3 top-1/2 z-20 -translate-y-1/2 px-3 py-1.5 text-xs"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    slideActiveProjectImage("prev");
+                  }}
+                  className="hidden sm:flex battle-command absolute left-4 top-1/2 -translate-y-1/2 z-30 px-3.5 py-4 text-sm bg-black/70 border border-white/20 text-[#f4f2ec] hover:text-[#ffe600] hover:border-[#ffe600] backdrop-blur-md rounded-lg shadow-xl cursor-pointer"
                   aria-label="Previous image"
                 >
-                  Prev
+                  ◀
                 </button>
                 <button
                   type="button"
-                  onClick={() => slideActiveProjectImage("next")}
-                  className="battle-command absolute right-3 top-1/2 z-20 -translate-y-1/2 px-3 py-1.5 text-xs"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    slideActiveProjectImage("next");
+                  }}
+                  className="hidden sm:flex battle-command absolute right-4 top-1/2 -translate-y-1/2 z-30 px-3.5 py-4 text-sm bg-black/70 border border-white/20 text-[#f4f2ec] hover:text-[#ffe600] hover:border-[#ffe600] backdrop-blur-md rounded-lg shadow-xl cursor-pointer"
                   aria-label="Next image"
                 >
-                  Next
+                  ▶
                 </button>
               </>
             ) : null}
+
+            {/* Mobile / Screen Hint Badge */}
+            <div className="absolute top-3 left-1/2 -translate-x-1/2 pointer-events-none z-20 opacity-80">
+              <span className="slash-card border border-white/15 bg-black/70 px-3 py-1 text-[10px] uppercase tracking-widest text-[#ffe600] backdrop-blur-md">
+                {zoomScale > 1
+                  ? "Drag to pan • Double-tap to reset"
+                  : "Double-tap or pinch to zoom • Swipe to change"}
+              </span>
+            </div>
+          </div>
+
+          {/* Bottom Floating Control Toolbar */}
+          <div
+            className="relative z-30 flex items-center justify-center pb-4 pt-2"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center gap-3 px-4 py-2 border border-white/20 bg-[#0b1220]/90 backdrop-blur-md rounded-full shadow-2xl">
+              {activeProjectGallery.length > 1 ? (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => slideActiveProjectImage("prev")}
+                    className="battle-command px-3 py-1 text-xs text-[#f4f2ec] hover:text-[#ffe600] font-bold cursor-pointer"
+                    aria-label="Previous image"
+                  >
+                    PREV
+                  </button>
+                  <div className="flex items-center gap-1.5 px-1">
+                    {activeProjectGallery.map((_, idx) => (
+                      <button
+                        key={`fullscreen-dot-${idx}`}
+                        type="button"
+                        onClick={() => setActiveImageIndex(idx)}
+                        className={`h-2 rounded-full transition-all cursor-pointer ${
+                          idx === activeImageIndex
+                            ? "w-6 bg-[#ffe600]"
+                            : "w-2 bg-white/40 hover:bg-[#56b9ea]"
+                        }`}
+                        aria-label={`Go to image ${idx + 1}`}
+                      />
+                    ))}
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => slideActiveProjectImage("next")}
+                    className="battle-command px-3 py-1 text-xs text-[#f4f2ec] hover:text-[#ffe600] font-bold cursor-pointer"
+                    aria-label="Next image"
+                  >
+                    NEXT
+                  </button>
+                </>
+              ) : (
+                <span className="text-[11px] uppercase tracking-wider text-[#f4f2ec]/70 px-2 font-mono">
+                  1 Visual Available
+                </span>
+              )}
+            </div>
           </div>
         </div>
       ) : null}
