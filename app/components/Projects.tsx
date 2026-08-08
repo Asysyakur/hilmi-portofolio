@@ -314,6 +314,7 @@ export default function Projects() {
   const [canScrollNext, setCanScrollNext] = useState(true);
   const [showSurpriseBurst, setShowSurpriseBurst] = useState(false);
   const [isImageFullscreen, setIsImageFullscreen] = useState(false);
+  const [isModalImageLoading, setIsModalImageLoading] = useState(false);
   const [scrollbar, setScrollbar] = useState({ left: 0, width: 1 });
   const projectLaneRef = useRef<HTMLDivElement | null>(null);
   const scrollbarTrackRef = useRef<HTMLDivElement | null>(null);
@@ -467,10 +468,40 @@ export default function Projects() {
   }, [isImageFullscreen]);
 
   useEffect(() => {
+    // Preload ALL project images in background as soon as page mounts
+    const preloadAll = () => {
+      const allImages: (string | StaticImageData)[] = [];
+      Object.values(projectGalleryMapping).forEach((mapping) => {
+        allImages.push(...mapping.dev);
+      });
+      projects.forEach((proj) => {
+        if (proj.image) allImages.push(proj.image);
+      });
+
+      allImages.forEach((img) => {
+        const src = typeof img === "string" ? img : img?.src;
+        if (src) {
+          const imageObj = new window.Image();
+          imageObj.src = src;
+        }
+      });
+    };
+
+    if (typeof window !== "undefined") {
+      if ("requestIdleCallback" in window) {
+        (window as unknown as { requestIdleCallback: (cb: () => void) => void }).requestIdleCallback(preloadAll);
+      } else {
+        setTimeout(preloadAll, 300);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
     if (!activeProject) {
       return;
     }
 
+    setIsModalImageLoading(true);
     const gallery = getProjectGallery(activeProject);
     gallery.forEach((image) => {
       const src = typeof image === "string" ? image : image.src;
@@ -479,7 +510,7 @@ export default function Projects() {
         img.src = src;
       }
     });
-  }, [activeProject]);
+  }, [activeProject, activeImageIndex]);
 
   const scrollProjects = (direction: "prev" | "next") => {
     const lane = projectLaneRef.current;
@@ -862,11 +893,22 @@ export default function Projects() {
             <div className="mt-5 rounded-xl border border-white/15 bg-black/35 p-4">
               <div className="relative h-48 overflow-hidden rounded-lg sm:h-72 lg:h-96">
                 <div className="absolute inset-0 bg-linear-to-br from-[#56b9ea]/18 to-[#ffe600]/12" />
+                {isModalImageLoading ? (
+                  <div className="absolute inset-0 z-15 flex flex-col items-center justify-center bg-[#0d1b2d]/92 backdrop-blur-xs">
+                    <div className="mb-2 h-7 w-7 animate-spin rounded-full border-2 border-[#ffe600] border-t-transparent" />
+                    <span className="persona-title animate-pulse text-xs uppercase tracking-[0.16em] text-[#ffe600]">
+                      Loading Visual...
+                    </span>
+                  </div>
+                ) : null}
                 {activeProjectGallery.length > 1 ? (
                   <>
                     <button
                       type="button"
-                      onClick={() => slideActiveProjectImage("prev")}
+                      onClick={() => {
+                        setIsModalImageLoading(true);
+                        slideActiveProjectImage("prev");
+                      }}
                       className="battle-command absolute left-3 top-1/2 z-20 -translate-y-1/2 px-3 py-1.5 text-xs"
                       aria-label="Previous image"
                     >
@@ -874,7 +916,10 @@ export default function Projects() {
                     </button>
                     <button
                       type="button"
-                      onClick={() => slideActiveProjectImage("next")}
+                      onClick={() => {
+                        setIsModalImageLoading(true);
+                        slideActiveProjectImage("next");
+                      }}
                       className="battle-command absolute right-3 top-1/2 z-20 -translate-y-1/2 px-3 py-1.5 text-xs"
                       aria-label="Next image"
                     >
@@ -891,7 +936,10 @@ export default function Projects() {
                   fill
                   sizes="(max-width: 640px) 100vw, 800px"
                   onClick={openFullscreenImage}
-                  className="relative z-10 cursor-zoom-in object-contain object-center opacity-95"
+                  onLoad={() => setIsModalImageLoading(false)}
+                  className={`relative z-10 cursor-zoom-in object-contain object-center transition-opacity duration-300 ${
+                    isModalImageLoading ? "opacity-0" : "opacity-95"
+                  }`}
                 />
               </div>
 
@@ -901,7 +949,10 @@ export default function Projects() {
                     <button
                       key={`${activeProject.title}-gallery-${index}`}
                       type="button"
-                      onClick={() => setActiveImageIndex(index)}
+                      onClick={() => {
+                        setIsModalImageLoading(true);
+                        setActiveImageIndex(index);
+                      }}
                       className={`h-2.5 rounded-full transition cursor-pointer ${
                         index === activeImageIndex
                           ? "w-7 bg-[#ffe600]"
