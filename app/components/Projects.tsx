@@ -19,11 +19,6 @@ import edugame56 from "../assets/Edugame/image 56.webp";
 import edugame58 from "../assets/Edugame/image 58.webp";
 import edugame59 from "../assets/Edugame/image 59.webp";
 import edugame62 from "../assets/Edugame/image 62.webp";
-import jelajahiku66 from "../assets/Jelajahiku/image 66.webp";
-import jelajahiku67 from "../assets/Jelajahiku/image 67.webp";
-import jelajahiku68 from "../assets/Jelajahiku/image 68.webp";
-import jelajahiku69 from "../assets/Jelajahiku/image 69.webp";
-import jelajahiku71 from "../assets/Jelajahiku/image 71.webp";
 import lupic77 from "../assets/Lupic/image 77.webp";
 import lupic79 from "../assets/Lupic/image 79.webp";
 import lupic80 from "../assets/Lupic/image 80.webp";
@@ -34,7 +29,6 @@ import pos72 from "../assets/POS Ayam Babak Belur/image 72.webp";
 import pos73 from "../assets/POS Ayam Babak Belur/image 73.webp";
 import pos74 from "../assets/POS Ayam Babak Belur/image 74.webp";
 import pos75 from "../assets/POS Ayam Babak Belur/image 75.webp";
-import scarlett63 from "../assets/Scarlett/image 63.webp";
 
 import hiring1 from "../assets/Hiring/hiring1.webp";
 import hiring2 from "../assets/Hiring/hiring2.webp";
@@ -154,18 +148,6 @@ const projects: PortfolioProject[] = [
     ],
   },
   {
-    title: "INTERACTIVE VILLAGE PROFILE + GEMINI AI",
-    desc: "Developing an interactive village profile platform integrated with Gemini AI to provide intelligent insights and answers about local culture and heritage using React.js, Laravel, MySQL, and Tailwind CSS.",
-    tag: "Full Stack + AI Integration",
-    period: "Nov 2024 - Aug 2025 | Freelance",
-    image: "/globe.svg",
-    details: [
-      "Integrated Gemini AI for smart village information answers.",
-      "Designed interactive local culture storytelling.",
-      "Balanced exploration, information, and visual appeal.",
-    ],
-  },
-  {
     title: "HAND GESTURE HIRING PLATFORM",
     desc: "Developing an interactive hiring platform that integrates hand gesture camera technology for candidate profile using React.js, Laravel, MySQL, and Tailwind CSS.",
     tag: "AI / Tech Innovation",
@@ -230,8 +212,6 @@ const projects: PortfolioProject[] = [
 const devGalleryFallback: StaticImageData[] = [
   absensi84,
   edugame55,
-  jelajahiku66,
-  scarlett63,
   lupic77,
   pos72,
 ];
@@ -253,9 +233,6 @@ const projectGalleryMapping: Record<
   },
   "GAMIFIED LEARNING MANAGEMENT SYSTEM": {
     dev: [edugame55, edugame56, edugame58, edugame59, edugame62],
-  },
-  "INTERACTIVE VILLAGE PROFILE + GEMINI AI": {
-    dev: [jelajahiku66, jelajahiku67, jelajahiku68, jelajahiku69, jelajahiku71],
   },
   "HAND GESTURE HIRING PLATFORM": {
     dev: [
