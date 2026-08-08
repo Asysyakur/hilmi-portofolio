@@ -1,48 +1,71 @@
 "use client";
 
 type CareerItem = {
-  phase: string;
+  role: string;
+  company: string;
   period: string;
-  point: string;
-  note: string;
+  bullets: string[];
 };
 
 const careerRoad: CareerItem[] = [
   {
-    phase: "Education (Pendidikan)",
-    period: "Aug 2021 - Aug 2025",
-    point: "Universitas Pendidikan Indonesia",
-    note: "S1 Computer Science Education (GPA 3.83 / 4.00). Served as a teaching assistant for the Data Structures course practicum.",
-  },
-  {
-    phase: "Organizational Experience",
-    period: "Feb 2023 - Jan 2024",
-    point: "BEM KEMAKOM & UKM FILM SATU LAYAR UPI",
-    note: "Staff of IT Communication & Media Division. Edited official video documentations, designed visual social content, managed media channels, and mentored crew members in video editing.",
-  },
-  {
-    phase: "Fullstack Developer",
-    period: "Oct 2023 - Feb 2024",
-    point: "PT. Widata Intelligent Solution - Bandung",
-    note: "Developed Front-end and Back-end for Computer-Based Test (CBT) platform, Company Profile & E-commerce, Hotel Front Office simulation (AppWrite), and POS Cashier Web Application using React.js, Laravel, MySQL, and Tailwind CSS.",
-  },
-  {
-    phase: "Front End Developer",
-    period: "Jan 2024 - Jun 2024",
-    point: "PT ARM Solusi - Bandung",
-    note: "Developed the Front-end of an Official Memo Application for enterprise company operations using React.js, Laravel, MySQL, and Tailwind CSS.",
-  },
-  {
-    phase: "Freelance Fullstack Developer",
-    period: "Nov 2024 - Aug 2025",
-    point: "Freelance Projects - Bandung",
-    note: "Built company employee evaluation platform, drag-and-drop LMS platform, Gemini AI-integrated village profile platform, gesture camera hiring platform, and Chamilo AI evaluation plugin (Gemini & Ollama AI).",
-  },
-  {
-    phase: "Front End Developer",
+    role: "Front End Developer",
+    company: "PT Padepokan Tujuh Sembilan — Bandung",
     period: "Dec 2025 - Jun 2026",
-    point: "PT Padepokan Tujuh Sembilan - Bandung",
-    note: "Developed responsive digital promotion landing pages focusing on modern UI design & UX (React.js, Tailwind CSS) and explored Odoo workflow and core ERP modules.",
+    bullets: [
+      "Developed responsive promotional landing page web applications focusing on modern UI design and UX optimization using React.js and Tailwind CSS.",
+      "Explored core Odoo ERP modules (Sales, Inventory, Accounting) to analyze integrated enterprise workflow data structures.",
+      "Optimized mobile responsiveness, cross-browser layout consistency, and page load performance."
+    ],
+  },
+  {
+    role: "Freelance Fullstack Developer",
+    company: "Freelance Projects — Bandung",
+    period: "Nov 2024 - Aug 2025",
+    bullets: [
+      "Built company employee evaluation platform, gamified LMS platform, and camera hand-gesture hiring web application.",
+      "Integrated Gemini AI and local Ollama AI for Chamilo LMS automated assignment evaluation plugin.",
+      "Developed RESTful APIs, role-based authentication, relational database schemas, and interactive React UI components."
+    ],
+  },
+  {
+    role: "Front End Developer",
+    company: "PT ARM Solusi — Bandung",
+    period: "Jan 2024 - Jun 2024",
+    bullets: [
+      "Developed the frontend interface of an official enterprise memo system using React.js, Tailwind CSS, and REST APIs.",
+      "Implemented department approval status workflows, memo draft/dispatch views, and printable document layouts.",
+      "Collaborated with backend engineers to integrate corporate communication endpoints and authentication middleware."
+    ],
+  },
+  {
+    role: "Fullstack Developer",
+    company: "PT. Widata Intelligent Solution — Bandung",
+    period: "Oct 2023 - Feb 2024",
+    bullets: [
+      "Built front-end and back-end for Computer-Based Test (CBT) platform, POS Cashier web app, Company Profile & E-commerce, and Hotel simulation.",
+      "Developed React.js UI components, Laravel REST APIs, MySQL relational schemas, and AppWrite cloud backend integrations.",
+      "Optimized real-time exam timer synchronization, checkout cart calculation logic, and cashier transaction workflows."
+    ],
+  },
+  {
+    role: "S1 Computer Science Education",
+    company: "Universitas Pendidikan Indonesia",
+    period: "Aug 2021 - Aug 2025",
+    bullets: [
+      "Graduated with GPA 3.83 / 4.00 in S1 Computer Science Education program.",
+      "Mentored undergraduate students as Teaching Assistant for Data Structures & Algorithms course practicum.",
+      "Built strong foundation in software engineering, database architecture, web systems, and algorithmic logic."
+    ],
+  },
+  {
+    role: "IT & Media Division Staff",
+    company: "BEM KEMAKOM & UKM Film Satu Layar UPI",
+    period: "Feb 2023 - Jan 2024",
+    bullets: [
+      "Managed digital media channels, official event documentations, and visual content publication.",
+      "Mentored creative crew members in video editing workflows and digital media production."
+    ],
   },
 ];
 
@@ -71,13 +94,13 @@ export default function CareerRoad() {
 
       <div className="relative mx-auto max-w-6xl">
         <div className="mb-4 flex items-center justify-between gap-4">
-          <h2 className={sectionTitleClass}>Career Road</h2>
+          <h2 className={sectionTitleClass}>Work Experience & Education</h2>
         </div>
 
         <ol className="relative space-y-6 before:absolute before:bottom-2 before:left-3 before:top-2 before:w-0.5 before:bg-linear-to-b before:from-[#ffe600] before:via-[#56b9ea] before:to-white/25">
           {careerRoad.map((item, index) => (
             <li
-              key={item.phase}
+              key={item.role + item.company}
               className="persona-road-item relative border-b border-white/8 pb-5 pl-10 last:border-b-0"
             >
               <span className="absolute left-0 top-1 flex h-6 w-6 items-center justify-center rounded-full border border-[#ffe600]/70 bg-[#0b1a2d] text-[10px] font-bold text-[#ffe600] shadow-[0_0_12px_rgba(255,230,0,0.24)]">
@@ -86,7 +109,7 @@ export default function CareerRoad() {
 
               <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                 <div className="sm:w-2/5">
-                  <p className={contentTitleClass}>{item.phase}</p>
+                  <p className={contentTitleClass}>{item.role}</p>
                   <p className={metaTextClass}>{item.period}</p>
 
                   <div className="mt-3 h-0.5 w-16 bg-linear-to-r from-[#ffe600] to-[#56b9ea]" />
@@ -95,13 +118,18 @@ export default function CareerRoad() {
                 <div className="sm:w-3/5">
                   <p className="persona-slant inline-block max-w-full bg-[#ffe600] px-3 py-1 text-xs uppercase tracking-wider text-[#0b1220] sm:text-sm">
                     <span className="persona-slant-inner block">
-                      {item.point}
+                      {item.company}
                     </span>
                   </p>
 
-                  <p className="mt-2 text-base leading-7 text-[#f4f2ec]/85 sm:text-lg">
-                    {item.note}
-                  </p>
+                  <ul className="mt-3 space-y-2 text-sm leading-6 text-[#f4f2ec]/85 sm:text-base">
+                    {item.bullets.map((bullet) => (
+                      <li key={bullet} className="flex items-start gap-2">
+                        <span className="text-[#ffe600] font-bold mt-0.5">›</span>
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </li>

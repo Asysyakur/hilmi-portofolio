@@ -19,24 +19,25 @@ const barlow = Barlow_Condensed({
 
 export const metadata: Metadata = {
   title: {
-    default: "Hilmi Asysyakur Islam | Fullstack Developer",
+    default: "Hilmi Asysyakur Islam | Frontend Developer",
     template: "%s | Hilmi Asysyakur Islam",
   },
   description:
-    "Fullstack developer in Bandung building polished, scalable web products and AI-integrated platforms.",
+    "Frontend Developer specializing in React.js, Next.js, and Laravel. Building responsive web applications and AI-integrated platforms.",
   keywords: [
     "Hilmi Asysyakur Islam",
-    "Fullstack Developer",
     "Frontend Developer",
+    "Fullstack Developer",
+    "React.js",
     "Next.js",
     "Laravel",
     "Bandung",
   ],
   authors: [{ name: "Hilmi Asysyakur Islam" }],
   openGraph: {
-    title: "Hilmi Asysyakur Islam | Fullstack Developer",
+    title: "Hilmi Asysyakur Islam | Frontend Developer",
     description:
-      "Explore selected web products, experience, and technical strengths of Hilmi Asysyakur Islam.",
+      "Frontend Developer specializing in React.js, Next.js, and Laravel. Building responsive web applications and AI-integrated platforms.",
     type: "website",
     locale: "id_ID",
     images: [
@@ -50,9 +51,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hilmi Asysyakur Islam | Fullstack Developer",
+    title: "Hilmi Asysyakur Islam | Frontend Developer",
     description:
-      "Explore selected web products, experience, and technical strengths of Hilmi Asysyakur Islam.",
+      "Frontend Developer specializing in React.js, Next.js, and Laravel. Building responsive web applications and AI-integrated platforms.",
     images: ["/PasFoto.jpg"],
   },
 };

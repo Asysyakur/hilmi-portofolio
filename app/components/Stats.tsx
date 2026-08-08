@@ -1,12 +1,56 @@
 "use client";
 
-const developerStats = [
-  { name: "React.js / Next.js", value: 94 },
-  { name: "Laravel / PHP", value: 92 },
-  { name: "Tailwind CSS & UI/UX", value: 93 },
-  { name: "MySQL & REST API", value: 90 },
-  { name: "AI Integration (Gemini/Ollama)", value: 88 },
-  { name: "ERP & LMS (Odoo/Chamilo)", value: 87 },
+type SkillCategory = {
+  category: string;
+  icon: string;
+  skills: string[];
+};
+
+const skillCategories: SkillCategory[] = [
+  {
+    category: "Frontend Development",
+    icon: "⚡",
+    skills: [
+      "React.js",
+      "Next.js",
+      "JavaScript (ES6+)",
+      "TypeScript",
+      "Tailwind CSS",
+      "HTML5 & CSS3",
+      "Responsive UI/UX",
+    ],
+  },
+  {
+    category: "Backend & Systems",
+    icon: "🛠️",
+    skills: [
+      "Laravel",
+      "PHP",
+      "RESTful API Development",
+      "Authentication Middleware",
+      "JSON Data Pipelines",
+    ],
+  },
+  {
+    category: "Database & Cloud",
+    icon: "🗄️",
+    skills: ["MySQL", "AppWrite", "Relational DB Architecture", "PostgreSQL"],
+  },
+  {
+    category: "Tools & Workflows",
+    icon: "⚙️",
+    skills: ["Git & GitHub", "Figma (UI Prototyping)", "Odoo ERP Modules", "VS Code"],
+  },
+  {
+    category: "AI Integration",
+    icon: "🤖",
+    skills: [
+      "Gemini AI API",
+      "Ollama Local AI",
+      "AI Prompt Engineering",
+      "Automated Evaluation Plugins",
+    ],
+  },
 ];
 
 const achievements = [
@@ -35,31 +79,36 @@ export default function Stats() {
     <section id="stats" className="relative px-4 py-20 sm:px-6 lg:px-10">
       <div className="mx-auto max-w-6xl">
         <div className="mb-10 flex items-center justify-between gap-4">
-          <h2 className="persona-title text-5xl uppercase leading-none text-white sm:text-6xl">
-            Skills & Achievements
+          <h2 className="persona-title text-4xl uppercase leading-none text-white sm:text-5xl">
+            Tech Skills & Achievements
           </h2>
           <span className="slash-card hidden border border-white/25 bg-black/70 px-4 py-2 text-sm uppercase tracking-[0.14em] text-[#f4f2ec]/80 md:block">
-            UPI - Technical Skills Report
+            Technical Stack Matrix
           </span>
         </div>
 
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {developerStats.map((stat) => (
-            <article key={stat.name} className="slash-card persona-panel p-5">
-              <div className="mb-3 flex items-center justify-between">
-                <p className="text-lg uppercase tracking-widest text-[#f4f2ec]">
-                  {stat.name}
-                </p>
-                <p className="persona-title text-2xl text-[#ffe600]">
-                  {stat.value}%
-                </p>
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {skillCategories.map((item) => (
+            <article
+              key={item.category}
+              className="slash-card persona-panel border border-white/15 p-5 transition duration-300 hover:border-[#ffe600]/40"
+            >
+              <div className="mb-4 flex items-center gap-2 border-b border-white/15 pb-3">
+                <span className="text-xl">{item.icon}</span>
+                <h3 className="persona-title text-lg uppercase tracking-wider text-white">
+                  {item.category}
+                </h3>
               </div>
 
-              <div className="h-2.5 overflow-hidden rounded-full bg-[#2a2a2a]">
-                <div
-                  className="h-full rounded-full bg-linear-to-r from-[#56b9ea] to-[#ffe600]"
-                  style={{ width: `${stat.value}%` }}
-                />
+              <div className="flex flex-wrap gap-2">
+                {item.skills.map((skill) => (
+                  <span
+                    key={skill}
+                    className="slash-card border border-white/20 bg-black/60 px-3 py-1.5 text-xs text-[#f4f2ec]/90 transition hover:border-[#ffe600] hover:text-[#ffe600]"
+                  >
+                    {skill}
+                  </span>
+                ))}
               </div>
             </article>
           ))}

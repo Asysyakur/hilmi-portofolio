@@ -58,22 +58,168 @@ type PortfolioProject = {
   tag: string;
   period: string;
   image: string;
-  github?: string;
+  role: string;
+  techStack: string[];
+  problem: string;
+  solution: string;
+  contribution: string;
+  keyFeatures: string[];
+  linkType?: "private" | "github" | "live";
+  linkUrl?: string;
   details: string[];
+  isFeatured?: boolean;
 };
 
 const projects: PortfolioProject[] = [
   {
     title: "CBT WEB APPLICATION",
-    desc: "Developed Front-end and Back-end of a Computer-Based Test (CBT) web application using React.js, Laravel, MySQL, and Tailwind CSS.",
+    desc: "Built a Computer-Based Testing platform for automated examination management, real-time timer sync, and instant grading.",
     tag: "Fullstack",
     period: "Oct 2023 - Feb 2024 | PT Widata Intelligent Solution",
     image: "/window.svg",
+    role: "Fullstack Developer",
+    techStack: ["React.js", "Laravel", "MySQL", "Tailwind CSS"],
+    problem: "Manual examination processes made question management, exam scheduling, and result grading time-consuming and error-prone.",
+    solution: "Built a web-based CBT platform featuring automated scoring, examination session management, user authentication, and instant result analytics.",
+    contribution: "Developed both responsive frontend quiz interface and backend REST APIs, authentication middleware, timer sync, and automated score processing.",
+    keyFeatures: [
+      "Automated exam scoring & instant analytics reporting",
+      "Real-time exam timer synchronization across sessions",
+      "Role-based access controls for students and administrators",
+      "Printable exam result reports and CSV data export"
+    ],
+    linkType: "private",
     details: [
       "Built assessment flow for students and administrators.",
       "Developed both responsive frontend UI and backend API & DB schemas.",
       "Optimized test execution stability, timer sync, and results processing.",
     ],
+    isFeatured: true,
+  },
+  {
+    title: "GAMIFIED LEARNING MANAGEMENT SYSTEM",
+    desc: "Developing a gamified LMS featuring RPG progression mechanics, achievement badges, and interactive course milestones.",
+    tag: "Fullstack",
+    period: "Nov 2024 - Aug 2025 | Freelance",
+    image: "/next.svg",
+    role: "Fullstack Developer",
+    techStack: ["React.js", "Laravel", "MySQL", "Tailwind CSS"],
+    problem: "Traditional online learning management platforms often suffer from student fatigue, drop-outs, and low completion rates.",
+    solution: "Developed a gamified LMS featuring RPG progression mechanics, achievement badges, and interactive course milestones to boost engagement.",
+    contribution: "Designed and built the gamified frontend UI, course completion reward APIs, student progress database models, and interactive quiz modules.",
+    keyFeatures: [
+      "Gamified course completion reward & RPG progression system",
+      "Student XP, level-up, and achievement badge tracking",
+      "Interactive course modules and real-time quiz assessment",
+      "Teacher dashboard for monitoring student course milestones"
+    ],
+    linkType: "private",
+    details: [
+      "RPG element for course completion reward system.",
+      "Gamified mechanics to improve engagement.",
+      "Focused on intuitive learning flow and student motivation.",
+    ],
+    isFeatured: true,
+  },
+  {
+    title: "POS CASHIER WEB APP",
+    desc: "Developed a Point of Sale frontend web app for cashier operations, dynamic cart building, and transaction processing.",
+    tag: "Frontend",
+    period: "Oct 2023 - Feb 2024 | PT Widata Intelligent Solution",
+    image: "/file.svg",
+    role: "Frontend Developer",
+    techStack: ["React.js", "Tailwind CSS", "Laravel API", "MySQL"],
+    problem: "Retail cashiers required a fast, error-free checkout interface to eliminate transaction delays during peak operational hours.",
+    solution: "Designed and built a cashier-focused Point of Sale (POS) frontend web application optimized for daily operational speed.",
+    contribution: "Developed checkout UI components, cart state management, product search filters, and transaction receipt generation logic.",
+    keyFeatures: [
+      "Fast product search & dynamic cart builder interface",
+      "Instant total calculation and payment change processing",
+      "Cashier-friendly keyboard shortcut navigation",
+      "Transaction summary modal & receipt print flow"
+    ],
+    linkType: "private",
+    details: [
+      "Created cashier-focused transaction interfaces.",
+      "Optimized speed for daily operational tasks.",
+      "Built clean, practical flow for store usage.",
+    ],
+    isFeatured: true,
+  },
+  {
+    title: "EMPLOYEE EVALUATION PLATFORM",
+    desc: "Developing a company staff evaluation platform to track, score, and manage employee performance across departments.",
+    tag: "Fullstack",
+    period: "Nov 2024 - Aug 2025 | Freelance",
+    image: "/window.svg",
+    role: "Fullstack Developer",
+    techStack: ["Laravel", "MySQL", "Tailwind CSS", "Blade"],
+    problem: "Company employee performance evaluations were handled through fragmented spreadsheets without unified progress tracking.",
+    solution: "Built a centralized company employee evaluation platform to track, score, and report staff performance effectively.",
+    contribution: "Developed evaluation form interfaces, manager & employee access controls, database schema design, and summary dashboard.",
+    keyFeatures: [
+      "Multi-criteria employee evaluation forms & rating scales",
+      "Manager review & staff self-evaluation access roles",
+      "Automated performance score aggregation & analytics",
+      "Printable PDF evaluation reports for HR decision making"
+    ],
+    linkType: "private",
+    details: [
+      "Built evaluation forms and performance tracking views.",
+      "Designed data flow for manager and employee roles.",
+      "Focused on actionable performance insight delivery.",
+    ],
+    isFeatured: true,
+  },
+  {
+    title: "CHAMILO AI EVALUATION PLUGIN",
+    desc: "Built an AI-powered evaluation plugin for Chamilo LMS integrating cloud Gemini AI & local Ollama AI for automated essay grading.",
+    tag: "AI / LMS Plugin",
+    period: "Nov 2024 - Aug 2025 | Freelance",
+    image: "/vercel.svg",
+    role: "Fullstack Developer / AI Integration",
+    techStack: ["Chamilo LMS", "PHP", "Gemini AI", "Ollama AI"],
+    problem: "Grading open-ended essay assignments in LMS platforms consumed extensive instructor time, causing assessment bottlenecks.",
+    solution: "Developed an AI-powered plugin for Chamilo LMS integrating both cloud (Gemini AI) and local (Ollama AI) models for automated grading assistance.",
+    contribution: "Built the plugin integration architecture, API connectors for Gemini AI & Ollama AI, prompt grading logic, and instructor review UI.",
+    keyFeatures: [
+      "Automated essay assignment grading assistance with AI feedback",
+      "Dual Gemini AI cloud & Ollama local AI model support",
+      "Customizable evaluation rubric prompt configurations",
+      "Instructor score review and manual override controls"
+    ],
+    linkType: "private",
+    details: [
+      "Automates evaluation workflow with AI assistance.",
+      "Leveraged Gemini AI and Ollama AI for local & cloud AI inference.",
+      "Supports more efficient learning assessment and automated feedback.",
+    ],
+    isFeatured: true,
+  },
+  {
+    title: "HAND GESTURE HIRING PLATFORM",
+    desc: "Developing an interactive hiring platform that integrates camera hand-gesture technology for touchless candidate profile navigation.",
+    tag: "AI / Tech Innovation",
+    period: "Nov 2024 - Aug 2025 | Freelance",
+    image: "/globe.svg",
+    role: "Fullstack Developer",
+    techStack: ["React.js", "Laravel", "MySQL", "MediaPipe / OpenCV", "Tailwind CSS"],
+    problem: "Standard text-only application forms failed to provide interactive candidate engagement during early-stage recruitment.",
+    solution: "Built an innovative hiring platform integrating camera-based hand gesture recognition for candidate profile navigation.",
+    contribution: "Integrated browser camera hand-gesture detection, candidate onboarding flows, REST APIs, and recruitment dashboard interface.",
+    keyFeatures: [
+      "Camera-based hand gesture detection & navigation",
+      "Interactive candidate video & profile showcase",
+      "Recruiter evaluation & candidate filtering portal",
+      "Responsive touchless onboarding user interface"
+    ],
+    linkType: "private",
+    details: [
+      "Integrated camera-based interaction for profile input.",
+      "Built engaging and modern recruitment experience.",
+      "Focused on usability for candidate onboarding.",
+    ],
+    isFeatured: true,
   },
   {
     title: "COMPANY PROFILE + E-COMMERCE",
@@ -81,35 +227,24 @@ const projects: PortfolioProject[] = [
     tag: "Fullstack",
     period: "Oct 2023 - Feb 2024 | PT Widata Intelligent Solution",
     image: "/window.svg",
+    role: "Fullstack Developer",
+    techStack: ["React.js", "Laravel", "MySQL", "Tailwind CSS"],
+    problem: "Businesses required a cohesive company showcase and online storefront to present products and capture customer leads.",
+    solution: "Built an integrated company profile and e-commerce web platform with product catalog, cart, and inquiry flows.",
+    contribution: "Developed product catalog frontend components, backend REST APIs, shopping cart state management, and database models.",
+    keyFeatures: [
+      "Responsive company profile landing sections",
+      "Product catalog with category filters & detail views",
+      "Integrated shopping cart & customer checkout flow",
+      "Admin panel for managing products and company info"
+    ],
+    linkType: "private",
     details: [
       "Built profile pages, product catalog, and checkout flow.",
       "Implemented responsive UI and backend integration.",
       "Focused on conversion-oriented business flow.",
     ],
-  },
-  {
-    title: "HOTEL SIMULATION PLATFORM",
-    desc: "Developed Front-end and Back-end of a Hotel Front Office and Housekeeping simulation website using React.js, Tailwind CSS, and AppWrite.",
-    tag: "Simulation",
-    period: "Oct 2023 - Feb 2024 | PT Widata Intelligent Solution",
-    image: "/globe.svg",
-    details: [
-      "Built modules for front office and housekeeping scenarios.",
-      "Designed interactive flow for training context.",
-      "Improved clarity for role-based operations.",
-    ],
-  },
-  {
-    title: "POS CASHIER WEB APP",
-    desc: "Developed Front-end of a Point of Sale (POS) web application for cashier operations using React.js, Laravel, MySQL, and Tailwind CSS.",
-    tag: "Frontend",
-    period: "Oct 2023 - Feb 2024 | PT Widata Intelligent Solution",
-    image: "/file.svg",
-    details: [
-      "Created cashier-focused transaction interfaces.",
-      "Optimized speed for daily operational tasks.",
-      "Built clean, practical flow for store usage.",
-    ],
+    isFeatured: false,
   },
   {
     title: "OFFICIAL MEMO APPLICATION",
@@ -117,59 +252,49 @@ const projects: PortfolioProject[] = [
     tag: "Frontend",
     period: "Jan 2024 - Jun 2024 | PT ARM Solusi",
     image: "/file.svg",
+    role: "Frontend Developer",
+    techStack: ["React.js", "Tailwind CSS", "Laravel API"],
+    problem: "Enterprise internal communications lacked a structured, official digital memo dispatch and tracking interface.",
+    solution: "Developed the frontend application for official internal memos with status indicators, department filters, and document preview.",
+    contribution: "Built memo creation forms, inbox/outbox views, memo preview layouts, and API integration with enterprise backends.",
+    keyFeatures: [
+      "Official memo draft, dispatch, and review interfaces",
+      "Departmental approval workflow & status tracking",
+      "Document preview modal and printable memo views",
+      "Clean corporate design system implementation"
+    ],
+    linkType: "private",
     details: [
       "Built responsive frontend for company memo workflow.",
       "Focused on clarity, hierarchy, and formal business usage.",
       "Worked on production-facing UI implementation.",
     ],
+    isFeatured: false,
   },
   {
-    title: "EMPLOYEE EVALUATION PLATFORM",
-    desc: "Developing a company employee evaluation platform to assess and manage staff performance effectively using Laravel, MySQL, and Tailwind CSS.",
-    tag: "Fullstack",
-    period: "Nov 2024 - Aug 2025 | Freelance",
-    image: "/window.svg",
-    details: [
-      "Built evaluation forms and performance tracking views.",
-      "Designed data flow for manager and employee roles.",
-      "Focused on actionable performance insight delivery.",
-    ],
-  },
-  {
-    title: "GAMIFIED LEARNING MANAGEMENT SYSTEM",
-    desc: "Developing a gamified Learning Management System (LMS) platform to improve student engagement and motivation using React.js, Laravel, MySQL, and Tailwind CSS.",
-    tag: "Fullstack",
-    period: "Nov 2024 - Aug 2025 | Freelance",
-    image: "/next.svg",
-    details: [
-      "RPG element for course completion reward system.",
-      "Gamified mechanics to improve engagement.",
-      "Focused on intuitive learning flow and student motivation.",
-    ],
-  },
-  {
-    title: "HAND GESTURE HIRING PLATFORM",
-    desc: "Developing an interactive hiring platform that integrates hand gesture camera technology for candidate profile using React.js, Laravel, MySQL, and Tailwind CSS.",
-    tag: "AI / Tech Innovation",
-    period: "Nov 2024 - Aug 2025 | Freelance",
+    title: "HOTEL SIMULATION PLATFORM",
+    desc: "Developed Front-end and Back-end of a Hotel Front Office and Housekeeping simulation website using React.js, Tailwind CSS, and AppWrite.",
+    tag: "Simulation",
+    period: "Oct 2023 - Feb 2024 | PT Widata Intelligent Solution",
     image: "/globe.svg",
-    details: [
-      "Integrated camera-based interaction for profile input.",
-      "Built engaging and modern recruitment experience.",
-      "Focused on usability for candidate onboarding.",
+    role: "Fullstack Developer",
+    techStack: ["React.js", "AppWrite", "Tailwind CSS"],
+    problem: "Hospitality students needed practical simulation software for front office room reservation and housekeeping operations.",
+    solution: "Built a web-based hotel simulation platform replicating real-world reservation desk and room status management scenarios.",
+    contribution: "Developed front office desk views, room status tracking dashboards, and AppWrite cloud database integration.",
+    keyFeatures: [
+      "Interactive front office reservation desk simulator",
+      "Housekeeping room status tracking & update board",
+      "Role-based operational scenarios for training",
+      "AppWrite database integration for real-time state sync"
     ],
-  },
-  {
-    title: "CHAMILO AI EVALUATION PLUGIN",
-    desc: "Built an AI-powered evaluation plugin for Chamilo LMS to automate assessment processes and improve learning efficiency using Chamilo LMS, Gemini AI, and Ollama AI.",
-    tag: "AI / LMS Plugin",
-    period: "Nov 2024 - Aug 2025 | Freelance",
-    image: "/vercel.svg",
+    linkType: "private",
     details: [
-      "Automates evaluation workflow with AI assistance.",
-      "Leveraged Gemini AI and Ollama AI for local & cloud AI inference.",
-      "Supports more efficient learning assessment and automated feedback.",
+      "Built modules for front office and housekeeping scenarios.",
+      "Designed interactive flow for training context.",
+      "Improved clarity for role-based operations.",
     ],
+    isFeatured: false,
   },
   {
     title: "RESPONSIVE PROMOTIONAL LANDING PAGE",
@@ -177,11 +302,24 @@ const projects: PortfolioProject[] = [
     tag: "Frontend",
     period: "Dec 2025 - Jun 2026 | PT Padepokan Tujuh Sembilan",
     image: "/vercel.svg",
+    role: "Frontend Developer",
+    techStack: ["React.js", "Tailwind CSS", "HTML5", "CSS3"],
+    problem: "Promotional campaigns required a high-converting, mobile-optimized web landing page with clean brand typography.",
+    solution: "Designed and built a responsive promotional landing page with high visual appeal, smooth scroll sections, and CTA touchpoints.",
+    contribution: "Created responsive UI components, hero banner animations, interactive layout sections, and cross-browser testing.",
+    keyFeatures: [
+      "High-impact hero section with clear CTA conversion points",
+      "100% mobile-first responsive layout optimization",
+      "Clean CSS animations & interactive scroll behavior",
+      "Optimized asset loading & fast page performance"
+    ],
+    linkType: "private",
     details: [
       "Crafted modern promotional layout and components.",
       "Optimized responsive behavior for mobile and desktop.",
       "Improved visual hierarchy and readability.",
     ],
+    isFeatured: false,
   },
   {
     title: "ODOO ERP SYSTEM EXPLORATION",
@@ -189,11 +327,23 @@ const projects: PortfolioProject[] = [
     tag: "ERP / Workflow",
     period: "Dec 2025 - Jun 2026 | PT Padepokan Tujuh Sembilan",
     image: "/file.svg",
+    role: "Frontend / Workflow Explorer",
+    techStack: ["Odoo ERP", "Python", "PostgreSQL", "XML"],
+    problem: "Understanding complex enterprise resource planning (ERP) workflows across sales, inventory, and accounting departments.",
+    solution: "Explored Odoo ERP core architecture and custom module customization to understand end-to-end business process integration.",
+    contribution: "Analyzed Odoo modules, configured test environment workflows, and documented multi-department enterprise data flows.",
+    keyFeatures: [
+      "Sales, Inventory, and Accounting module workflow analysis",
+      "Enterprise multi-department data flow mapping",
+      "Hands-on custom ERP view & workflow integration analysis"
+    ],
+    linkType: "private",
     details: [
       "Explored core Odoo modules including Sales, Accounting, and Inventory.",
       "Analyzed integrated enterprise workflows for multi-department operations.",
       "Gained hands-on knowledge in custom ERP workflow integration.",
     ],
+    isFeatured: false,
   },
   {
     title: "COMPETITION ACHIEVEMENTS",
@@ -201,11 +351,23 @@ const projects: PortfolioProject[] = [
     tag: "Achievement",
     period: "2022 - 2023 | DIMAS-TI AMLI",
     image: "/file.svg",
+    role: "UI/UX & Programming Contestant",
+    techStack: ["Figma", "React.js", "Algorithms", "UI/UX"],
+    problem: "Competitive programming and UI/UX design challenges under tight deadline constraints.",
+    solution: "Designed user-centered digital solutions and solved algorithm challenges, achieving top placements across 3 national competitions.",
+    contribution: "Led UI/UX prototyping in Figma, developed frontend interactive demos, and solved algorithmic challenges.",
+    keyFeatures: [
+      "1st Runner-up, UI/UX Design Competition, DIMAS-TI AMLI 2023",
+      "3rd Runner-up, Programming Competition, DIMAS-TI AMLI 2022",
+      "Favorite Winner, UI/UX Design Competition, DIMAS-TI AMLI 2022"
+    ],
+    linkType: "private",
     details: [
       "Favorite Winner, UI/UX Design Competition, DIMAS-TI AMLI 2022.",
       "Programming Competition - 3rd Runner-up, DIMAS-TI AMLI 2022.",
       "UI/UX Design Competition - 1st Runner-up, DIMAS-TI AMLI 2023.",
     ],
+    isFeatured: false,
   },
 ];
 
@@ -703,7 +865,7 @@ export default function Projects() {
 
         <div className="relative mx-auto max-w-6xl">
           <div className="mb-4 flex items-center justify-between gap-4">
-            <h3 className={sectionTitleClass}>Project Archive</h3>
+            <h3 className={sectionTitleClass}>Featured Projects</h3>
             <div className="flex items-center gap-3">
               <button
                 type="button"
@@ -834,22 +996,29 @@ export default function Projects() {
 
       {activeProject ? (
         <div
-          className="fixed inset-0 z-1100 flex items-center justify-center bg-[#10233a]/78 px-4 py-10"
+          className="fixed inset-0 z-1100 flex items-center justify-center bg-[#10233a]/85 p-3 sm:p-6 overflow-y-auto"
           onClick={() => setActiveProject(null)}
         >
           <div
-            className="persona-panel slash-card w-full max-w-3xl border border-white/20 p-6 sm:p-8"
+            className="persona-panel slash-card my-auto w-full max-w-3xl border border-white/20 p-5 sm:p-7 max-h-[90vh] overflow-y-auto"
             onClick={(event) => event.stopPropagation()}
           >
             <div className="flex items-start justify-between gap-4">
               <div>
-                <p className="persona-slant mb-2 inline-block bg-[#56b9ea] px-3 py-1 text-xs uppercase tracking-[0.12em] text-[#f4f2ec]">
-                  <span className="persona-slant-inner block">
-                    {activeProject.tag}
+                <div className="flex flex-wrap items-center gap-2 mb-2">
+                  <span className="persona-slant bg-[#56b9ea] px-3 py-1 text-xs uppercase tracking-[0.12em] text-[#f4f2ec]">
+                    <span className="persona-slant-inner block">
+                      {activeProject.tag}
+                    </span>
                   </span>
-                </p>
+                  <span className="persona-slant bg-[#ffe600] px-3 py-1 text-xs uppercase tracking-[0.12em] text-[#0b1220]">
+                    <span className="persona-slant-inner block">
+                      Role: {activeProject.role}
+                    </span>
+                  </span>
+                </div>
                 <h3 className={contentTitleClass}>{activeProject.title}</h3>
-                <p className="mt-2 text-sm uppercase tracking-[0.13em] text-[#f4f2ec]/70">
+                <p className="mt-1 text-xs uppercase tracking-[0.13em] text-[#f4f2ec]/70 sm:text-sm">
                   {activeProject.period}
                 </p>
               </div>
@@ -857,18 +1026,51 @@ export default function Projects() {
               <button
                 type="button"
                 onClick={() => setActiveProject(null)}
-                className="battle-command slash-card px-3 py-2 text-sm text-[#f4f2ec] hover:text-[#ffe600]"
+                className="battle-command slash-card shrink-0 px-3 py-2 text-sm text-[#f4f2ec] hover:text-[#ffe600]"
               >
                 Close
               </button>
             </div>
 
-            <p className="mt-6 text-base leading-7 text-[#f4f2ec]/85">
+            {/* Tech Stack Badges */}
+            <div className="mt-4 flex flex-wrap gap-2">
+              {activeProject.techStack.map((tech) => (
+                <span
+                  key={tech}
+                  className="slash-card border border-white/20 bg-black/60 px-3 py-1 text-xs uppercase tracking-wider text-[#ffe600]"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+
+            <p className="mt-4 text-sm leading-6 text-[#f4f2ec]/85 sm:text-base">
               {activeProject.desc}
             </p>
 
-            <div className="mt-5 rounded-xl border border-white/15 bg-black/35 p-4">
-              <div className="relative h-48 overflow-hidden rounded-lg sm:h-72 lg:h-96">
+            {/* Problem & Solution */}
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
+              <div className="slash-card border border-red-500/30 bg-red-950/20 p-4">
+                <p className="persona-title text-xs uppercase tracking-[0.14em] text-red-400">
+                  Problem
+                </p>
+                <p className="mt-1 text-xs leading-5 text-[#f4f2ec]/85 sm:text-sm">
+                  {activeProject.problem}
+                </p>
+              </div>
+              <div className="slash-card border border-[#56b9ea]/35 bg-[#56b9ea]/10 p-4">
+                <p className="persona-title text-xs uppercase tracking-[0.14em] text-[#56b9ea]">
+                  Solution
+                </p>
+                <p className="mt-1 text-xs leading-5 text-[#f4f2ec]/85 sm:text-sm">
+                  {activeProject.solution}
+                </p>
+              </div>
+            </div>
+
+            {/* Gallery Image Box */}
+            <div className="mt-5 rounded-xl border border-white/15 bg-black/35 p-3 sm:p-4">
+              <div className="relative h-44 overflow-hidden rounded-lg sm:h-72 lg:h-84">
                 <div className="absolute inset-0 bg-linear-to-br from-[#56b9ea]/18 to-[#ffe600]/12" />
                 {isModalImageLoading ? (
                   <div className="absolute inset-0 z-15 flex flex-col items-center justify-center bg-[#0d1b2d]/92 backdrop-blur-xs">
@@ -942,16 +1144,54 @@ export default function Projects() {
               ) : null}
             </div>
 
-            <div className="mt-6 grid gap-3 sm:grid-cols-3">
-              {activeProject.details.map((detail) => (
-                <div
-                  key={detail}
-                  className="slash-card border border-white/15 bg-black/65 p-4 text-sm text-[#f4f2ec]/80"
-                >
-                  {detail}
-                </div>
-              ))}
+            {/* My Contribution */}
+            <div className="mt-4 slash-card border border-[#ffe600]/30 bg-[#ffe600]/10 p-4">
+              <p className="persona-title text-xs uppercase tracking-[0.14em] text-[#ffe600]">
+                My Contribution
+              </p>
+              <p className="mt-1 text-xs leading-5 text-[#f4f2ec] sm:text-sm">
+                {activeProject.contribution}
+              </p>
             </div>
+
+            {/* Key Features */}
+            <div className="mt-4">
+              <p className="persona-title text-xs uppercase tracking-[0.14em] text-[#f4f2ec]/75 mb-2">
+                Key Features
+              </p>
+              <div className="grid gap-2 sm:grid-cols-2">
+                {activeProject.keyFeatures.map((feature) => (
+                  <div
+                    key={feature}
+                    className="slash-card flex items-start gap-2 border border-white/15 bg-black/50 p-3 text-xs text-[#f4f2ec]/85 sm:text-sm"
+                  >
+                    <span className="text-[#ffe600] font-bold">›</span>
+                    <span>{feature}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Link / Repository status */}
+            {/* <div className="mt-5 flex items-center justify-between border-t border-white/15 pt-4">
+              <span className="text-xs uppercase tracking-widest text-[#f4f2ec]/60">
+                Project Access
+              </span>
+              {activeProject.linkType === "private" ? (
+                <span className="slash-card border border-white/20 bg-black/60 px-3 py-1.5 text-xs uppercase tracking-wider text-[#f4f2ec]/70">
+                  🔒 Private Enterprise / Client Project
+                </span>
+              ) : activeProject.linkUrl ? (
+                <a
+                  href={activeProject.linkUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="slash-card persona-title bg-[#ffe600] px-4 py-1.5 text-xs uppercase tracking-wider text-[#0b1220] transition hover:bg-[#fff067]"
+                >
+                  View Repository ↗
+                </a>
+              ) : null}
+            </div> */}
           </div>
         </div>
       ) : null}

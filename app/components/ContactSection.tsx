@@ -27,7 +27,7 @@ export default function ContactSection() {
             href="mailto:hilmiasysyakur123@gmail.com"
             className="persona-slant slash-card bg-[#ffe600] px-5 py-3 text-lg uppercase text-[#0b1220] transition hover:bg-[#fff067]"
           >
-            <span className="persona-slant-inner block">Email</span>
+            <span className="persona-slant-inner block">✉️ Email</span>
           </a>
           <a
             href="https://www.linkedin.com/in/hilmi-asysyakur-islam-489384279/"
@@ -35,15 +35,7 @@ export default function ContactSection() {
             rel="noreferrer"
             className="persona-slant slash-card border border-white/25 bg-black/70 px-5 py-3 text-lg uppercase text-white transition hover:border-[#ffe600]"
           >
-            <span className="persona-slant-inner block">LinkedIn</span>
-          </a>
-          <a
-            href="https://bit.ly/ProtofolioHilmi"
-            target="_blank"
-            rel="noreferrer"
-            className="persona-slant slash-card border border-white/25 bg-black/70 px-5 py-3 text-lg uppercase text-white transition hover:border-[#ffe600]"
-          >
-            <span className="persona-slant-inner block">Portofolio</span>
+            <span className="persona-slant-inner block">💼 LinkedIn</span>
           </a>
           <a
             href="https://github.com/Asysyakur"
@@ -51,7 +43,15 @@ export default function ContactSection() {
             rel="noreferrer"
             className="persona-slant slash-card border border-white/25 bg-black/70 px-5 py-3 text-lg uppercase text-white transition hover:border-[#ffe600]"
           >
-            <span className="persona-slant-inner block">GitHub</span>
+            <span className="persona-slant-inner block">🐙 GitHub</span>
+          </a>
+          <a
+            href="https://bit.ly/ProtofolioHilmi"
+            target="_blank"
+            rel="noreferrer"
+            className="persona-slant slash-card border border-white/25 bg-black/70 px-5 py-3 text-lg uppercase text-white transition hover:border-[#ffe600]"
+          >
+            <span className="persona-slant-inner block">📄 Portofolio</span>
           </a>
         </div>
       </div>

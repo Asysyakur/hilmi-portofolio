@@ -8,26 +8,26 @@ export default function Hero() {
   const [isCardHovered, setIsCardHovered] = useState(false);
   const [typedLine, setTypedLine] = useState("");
 
-  const profileLabel = "Profile // Fullstack Developer";
+  const profileLabel = "Profile // Frontend Developer";
 
   const heroSummary =
-    "Fullstack Developer with proven experience in developing AI-powered educational platforms, Learning Management Systems (LMS), gamification systems, ERP-integrated applications, and modern business websites. Skilled in React.js, Next.js, Laravel, JavaScript, PHP, and MySQL with strong expertise in UI/UX implementation, responsive web development, and AI integration.";
+    "Building modern, responsive, and scalable web applications with React.js, Next.js, and Laravel. Experienced in fullstack development, REST APIs, database integration, and AI-powered applications.";
 
   const skillTags = [
     "React.js",
     "Next.js",
     "Laravel",
-    "PHP",
-    "MySQL",
-    "JavaScript",
+    "TypeScript",
     "Tailwind CSS",
+    "REST API",
+    "MySQL",
     "Gemini AI",
   ];
 
   const commandItems = [
-    "Build scalable UI",
-    "Craft user-centered flow",
-    "Deliver production-ready web",
+    "Build scalable React & Next.js UI",
+    "Integrate robust RESTful APIs & DBs",
+    "Deliver production-ready web apps",
   ];
 
   useEffect(() => {
@@ -158,10 +158,10 @@ export default function Hero() {
 
           <div className="flex flex-wrap gap-4 pt-2">
             <a
-              href="#career-road"
+              href="#projects"
               className="slash-card persona-title bg-[#ffe600] px-7 py-3 text-2xl text-[#0b1220] transition hover:bg-[#fff067]"
             >
-              View Experience
+              View Projects
             </a>
             <a
               href="/HILMI_ASYSYAKUR_ISLAM-resume.pdf"
@@ -175,7 +175,7 @@ export default function Hero() {
               href="#contact"
               className="slash-card border border-white/25 bg-black/60 px-7 py-3 text-xl uppercase tracking-[0.12em] text-white transition hover:border-[#ffe600]"
             >
-              Hire Me
+              Contact Me
             </a>
           </div>
         </div>
@@ -208,7 +208,7 @@ export default function Hero() {
           <div className="mt-5 space-y-4 text-[#f4f2ec]">
             <div className="flex items-center justify-between border-b border-white/15 pb-2 text-base uppercase tracking-[0.12em]">
               <span>Role</span>
-              <span className="text-[#ffe600]">Fullstack Developer</span>
+              <span className="text-[#ffe600]">Frontend Developer</span>
             </div>
             <div className="flex items-center justify-between border-b border-white/15 pb-2 text-base uppercase tracking-[0.12em]">
               <span>Status</span>

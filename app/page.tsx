@@ -22,11 +22,11 @@ export default function Home() {
       <div id="content" tabIndex={-1}>
         <Hero />
         <div className="persona-divider" />
-        <Stats />
+        <Projects />
         <div className="persona-divider" />
         <CareerRoad />
         <div className="persona-divider" />
-        <Projects />
+        <Stats />
         <ContactSection />
       </div>
     </main>
