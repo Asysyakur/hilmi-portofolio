@@ -9,7 +9,26 @@ export default function IntroTransition() {
   const [isLeaving, setIsLeaving] = useState(false);
 
   useEffect(() => {
-    const prep = window.setTimeout(() => setReady(true), 950);
+    const imagesToPreload = [
+      "/PasFoto.jpg",
+      "/confidential-preview.png",
+    ];
+
+    let loadedCount = 0;
+    const total = imagesToPreload.length;
+
+    imagesToPreload.forEach((src) => {
+      const img = new window.Image();
+      img.onload = img.onerror = () => {
+        loadedCount += 1;
+        if (loadedCount >= total) {
+          setReady(true);
+        }
+      };
+      img.src = src;
+    });
+
+    const prep = window.setTimeout(() => setReady(true), 900);
     return () => window.clearTimeout(prep);
   }, []);
 

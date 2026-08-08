@@ -62,6 +62,9 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preload" href="/PasFoto.jpg" as="image" type="image/jpeg" />
+      </head>
       <body className={`${bebas.variable} ${barlow.variable}`}>
         <Cursor />
         {children}
